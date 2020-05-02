@@ -1,0 +1,58 @@
+{
+    "dress" : [
+        {
+            "gender": "female",
+            "kinds": "pants",
+            "color": "yellow",
+            "image": "../imgs/yellow_p.png"
+        },
+        {
+            "gender": "male",
+            "kinds": "tshirts",
+            "color" : "blue",
+            "image": "../imgs/blue_t.png"
+        },
+        {
+            "gender": "female",
+            "kinds": "skirt",
+            "color": "pink",
+            "image": "../imgs/pink_s.png"
+        },
+        {
+            "gender": "male",
+            "kinds": "pants",
+            "color": "blue",
+            "image": "../imgs/blue_p.png"
+        },
+        {
+            "gender": "female",
+            "kinds": "pants",
+            "color": "pink",
+            "image": "../imgs/pink_p.png"
+        },
+        {
+            "gender": "female",
+            "kinds": "tshirts",
+            "color": "pink",
+            "image": "../imgs/pink_t.png"
+        },
+        {
+            "gender": "male",
+            "kinds": "tshirts",
+            "color": "yellow",
+            "image": "../imgs/yellow_t.png"
+        },
+        {
+            "gender": "female",
+            "kinds": "skirt",
+            "color": "blue",
+            "image": "../imgs/blue_s.png"
+        },   
+        {
+            "gender": "female",
+            "kinds": "skirt",
+            "color": "yellow",
+            "image": "../imgs/yellow_s.png"
+        }
+    ]
+}
