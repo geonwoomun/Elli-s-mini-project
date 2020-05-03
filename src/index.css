@@ -1,0 +1,92 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+    background: #252525;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    margin-top: 20px;
+    height: 15vh;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+nav {
+    width: 50%;
+}
+.filter-list {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.filter-list img {
+    width: 60px;
+    cursor: pointer;
+}
+
+.filter-list .color {
+    cursor: pointer;
+    width: 60px;
+}
+.filter-list .color {
+    cursor: pointer;
+    width: 60px;
+    background: green;
+    text-align: center;
+    line-height: 60px;
+    border-radius: 5px;
+}
+
+.filter-list #pink{
+    background: #FD8085;
+}
+
+.filter-list #blue {
+    background: #3889C4;
+}
+
+.filter-list #yellow {
+    background: #FBBF23;
+}
+
+main {
+    width: 50%;
+}
+.dress-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 70vh;
+    margin: 0 auto;
+    padding: 0px;
+    overflow-y: auto;
+}
+.dress-list > li {
+    display: flex;
+    align-items: center;
+    background: white;
+    margin: 10px;
+    width: 90%;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.dress-list > li > img {
+    width: 50px;
+    margin: 0 10px;
+}

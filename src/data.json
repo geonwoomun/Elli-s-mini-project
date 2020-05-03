@@ -4,55 +4,64 @@
             "gender": "female",
             "kinds": "pants",
             "color": "yellow",
-            "image": "../imgs/yellow_p.png"
+            "image": "../imgs/yellow_p.png",
+            "size" : "small"
         },
         {
             "gender": "male",
             "kinds": "tshirts",
             "color" : "blue",
-            "image": "../imgs/blue_t.png"
+            "image": "../imgs/blue_t.png",
+            "size" : "large"
         },
         {
             "gender": "female",
             "kinds": "skirt",
             "color": "pink",
-            "image": "../imgs/pink_s.png"
+            "image": "../imgs/pink_s.png",
+            "size" : "small"
         },
         {
             "gender": "male",
             "kinds": "pants",
             "color": "blue",
-            "image": "../imgs/blue_p.png"
+            "image": "../imgs/blue_p.png",
+            "size" : "large"
         },
         {
             "gender": "female",
             "kinds": "pants",
             "color": "pink",
-            "image": "../imgs/pink_p.png"
+            "image": "../imgs/pink_p.png",
+            "size" : "small"
         },
         {
             "gender": "female",
             "kinds": "tshirts",
             "color": "pink",
-            "image": "../imgs/pink_t.png"
+            "image": "../imgs/pink_t.png",
+            "size" : "small"
         },
         {
             "gender": "male",
             "kinds": "tshirts",
             "color": "yellow",
-            "image": "../imgs/yellow_t.png"
+            "image": "../imgs/yellow_t.png",
+            "size" : "large"
         },
         {
             "gender": "female",
             "kinds": "skirt",
             "color": "blue",
-            "image": "../imgs/blue_s.png"
+            "image": "../imgs/blue_s.png",
+            "size" : "small"
         },   
         {
             "gender": "female",
             "kinds": "skirt",
             "color": "yellow",
-            "image": "../imgs/yellow_s.png"
+            "image": "../imgs/yellow_s.png",
+            "size" : "large"
         }
     ]
 }
