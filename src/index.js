@@ -1,8 +1,6 @@
 'use strict';
-const dressList = document.querySelector('.dress-list');
-let dresses;
 
-function showAllList() { // 로고를 눌렀을 시 전체 리스트를 보여줌.
+function showAllList(dresses) { // 로고를 눌렀을 시 전체 리스트를 보여줌.
     const logo = document.querySelector('.logo');
     logo.addEventListener('click', () => {
         renderList(dresses);
@@ -12,7 +10,7 @@ function showAllList() { // 로고를 눌렀을 시 전체 리스트를 보여�
 async function loadData() { // json 파일로부터 데이터를 받아 오는 함수.
     const response = await fetch('./data.json');
     const data = await response.json();
-    dresses = data.dress;
+    return data.dress;
 }
 
 function filterDress (dresses, filterSubject, filterName) { //옷을 필터하는 함수
@@ -41,12 +39,14 @@ function addFilterEvent(dresses) { // 필터 이벤트를 추가하는 함수
 }
 
 function renderList (dresses) { // 옷들을 그리는 함수
+    const dressList = document.querySelector('.dress-list');
+    
     while(dressList.hasChildNodes()){
         dressList.removeChild(dressList.firstChild);
     }
 
     dresses.forEach((dress) => {
-        const {gender, size,image} = dress;
+        const { gender, size,image } = dress;
         const li = document.createElement('li');
         const img = document.createElement('img');
         img.src = image;
@@ -59,9 +59,9 @@ function renderList (dresses) { // 옷들을 그리는 함수
 }
 
 async function init() { 
-    await loadData();
+    let dresses = await loadData();
     addFilterEvent(dresses);
-    showAllList();
+    showAllList(dresses);
     renderList(dresses);
 }
 
