@@ -1,0 +1,103 @@
+'use strict'; // Ellie: Awesome!
+
+function showAllList(dresses) {
+  // 로고를 눌렀을 시 전체 리스트를 보여줌.
+  const logo = document.querySelector('.logo');
+  logo.addEventListener('click', () => {
+    renderList(dresses);
+  });
+}
+
+async function loadData() {
+  // json 파일로부터 데이터를 받아 오는 함수.
+  const response = await fetch('./data.json');
+  const data = await response.json();
+  return data.dress; // Ellie: 복수의 아이템들이니깐 dresses 아니면 간단하게 items라고 json에서 정의하는게 좋을 것 같아요
+}
+
+function filterDress(dresses, filterSubject, filterName) {
+  //옷을 필터하는 함수
+  const filteredDresses = dresses.filter(
+    (dress) => dress[filterSubject] === filterName
+  );
+  renderList(filteredDresses);
+}
+
+// Ellie: 오웃! event delegationd을 쓰시다니, 굿 아이디어!
+function addFilterEvent(dresses) {
+  // 필터 이벤트를 추가하는 함수
+  const filterList = document.querySelector('.filter-list');
+  filterList.addEventListener('click', (e) => {
+    let filterSubject;
+    let filterName;
+    if (e.target.tagName === 'UL') {
+      return;
+    }
+    // Ellie: 잘하셨는데 클래스 이름과 id에 의존하는것은 임묵적으로 서로 커플링이 되는거니
+    // data-type, data-value 이런식으로 지정된 data를 쓰는것이 어떨까요?
+    // 그럼 이렇게 IMG 태그를 확인 하지 않아도 될 것 같아요
+    //  <li data-type="type" data-value="tshirt"
+    if (e.target.tagName === 'IMG') {
+      filterSubject = e.target.parentNode.className;
+      filterName = e.target.parentNode.id;
+    } else {
+      filterSubject = e.target.className;
+      filterName = e.target.id;
+    }
+    filterDress(dresses, filterSubject, filterName);
+  });
+}
+
+function renderList(dresses) {
+  // 옷들을 그리는 함수
+  const dressList = document.querySelector('.dress-list');
+
+  // Ellie: While로 일일이 자식 노드를 없애 주는 것보다는
+  while (dressList.hasChildNodes()) {
+    dressList.removeChild(dressList.firstChild);
+  }
+
+  // Ellie 버전:
+  dressList.innerHTML = dresses.map((item) => createHTML(item)).join('');
+  // dresses의 아이템들을 HTML로 변한하는 map 이용
+  // 여기서 createHTML 함수에서 item에 맞는 HTML을 만들어 주는 것을 작성하면 되겠죵~?
+  // 1. 각각의 드레스에 맞게 알맞는 HTML을 생성해주는 작은 단위의 함수 작성한뒤
+  // 2. 여기 함수에서는 list만 업데이트 해주는 식으로 작성하면 함수가 더 깔끔해질 것 같아요
+  // 그럼 나중에 unit test작성할때도 더 작은 단위로 테스트 할 수 있으니깐요 ;) 1석 2조
+
+  dresses.forEach((dress) => {
+    const { gender, size, image } = dress;
+    const li = document.createElement('li');
+    const img = document.createElement('img');
+    img.src = image;
+    const span = document.createElement('span');
+    span.innerText = `${gender}, ${size} size`;
+    li.appendChild(img);
+    li.appendChild(span);
+    dressList.appendChild(li);
+  });
+}
+
+async function init() {
+  let dresses = await loadData();
+  addFilterEvent(dresses); // Ellie: 이름 -> addFilterEventListener
+  showAllList(dresses); // Ellie: 이름 -> addLogoEventListener
+  // 이 함수가 전체 리스트를 보여주는것이 아니라 logo에 이벤트 리스너를 등록하는 것이므로
+  // 함수가 하는 일에 맞게 이름을 변경해주는것이 좋을 것 같아요
+  // 그럼 이런게 가능하겠죠? (이렇게 구지 안하셔도 되지만, 더 좋은 유닛테스트를 위한다면)
+  // L92(라인넘버 92)를 보세요
+  renderList(dresses);
+}
+
+// Ellie 버전:
+// addEventListener면 이벤트만 등록하는 코드만 들어 있어야 하고
+// 콜백은 따로 전달해서 콜백 메소드만 따로 유닛테스트가 가능해요 ;)
+async function init() {
+  let dresses = await loadData();
+  const renderAll = () => renderList(dresses);
+  addFilterEventListener((event) => filter(event));
+  addLogoEventListener(renderAll);
+  renderAll();
+}
+
+init();
